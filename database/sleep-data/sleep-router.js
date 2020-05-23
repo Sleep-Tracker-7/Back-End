@@ -32,9 +32,7 @@ router.get('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
     try {
         const payload = req.body
-        console.log(payload)
         const data = await db.updateSleepData(payload)
-        console.log(data)
         res.json(data)
     }
     catch (err) {
