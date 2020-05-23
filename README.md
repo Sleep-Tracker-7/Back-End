@@ -7,16 +7,16 @@
 
 ## Endpoints:
 
-    */auth/register*
+    ##### /auth/register
 
-    _Allows new user to sign-up -- ID is autoincremented, requires username (str, unique) and a password (str)._ 
+        Allows new user to sign-up -- ID is autoincremented, requires username (str, unique) and a password (str).
 
-    */auth/login*
+    ##### /auth/login
 
-    _Allows existing user to login -- requires an existing username (str) and correct password (str)._
+        Allows existing user to login -- requires an existing username (str) and correct password (str).
 
-    */auth/logout*
+    ##### /auth/logout
 
-    _Clears existing cookie, and redirects to main log-in page._
+        Clears existing cookie, and redirects to main log-in page.
 
 
