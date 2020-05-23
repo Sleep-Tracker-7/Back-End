@@ -1,7 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const db = require('../database/sleep-data/model')
+const db = require('../model/model')
 const router = express.Router()
 
 router.post('/register', async (req, res, next) => {
@@ -30,7 +30,7 @@ router.post('/login', async (req, res, next) => {
         if(!user) {
             return res.status(401).json(authErr)
         }
-        
+
         const passwordCheck = await bcrypt.compare(req.body.password, user.password)
         if(!passwordCheck) {
             return res.status(401).json(authErr)
@@ -43,6 +43,19 @@ router.post('/login', async (req, res, next) => {
         res.json({
             message: `Welcome to SleepTracker, ${user.username}`
         })
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
+router.get('/logout', async (req, res, next) => {
+    try {
+        res.clearCookie('token')
+        res.status(204).json({
+            message: "User was succesfully logged out."
+        })
+        res.redirect('/')
     }
     catch (err) {
         next(err)
