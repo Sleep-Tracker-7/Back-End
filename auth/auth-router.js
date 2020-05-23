@@ -55,7 +55,7 @@ router.get('/logout', async (req, res, next) => {
         res.status(204).json({
             message: "User was succesfully logged out."
         })
-        res.redirect('/')
+        res.redirect('/login')
     }
     catch (err) {
         next(err)
