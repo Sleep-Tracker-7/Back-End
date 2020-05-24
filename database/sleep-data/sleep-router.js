@@ -1,4 +1,5 @@
 const express = require('express')
+const jwt = require('jsonwebtoken')
 const db = require('../../model/model')
 const router = express.Router()
 
@@ -6,7 +7,10 @@ const router = express.Router()
 
 router.post('/', async (req, res, next) => {
     try {
-        const newSleepData = req.body
+        const newSleepData = {
+            ...req.body,
+            user_id: jwt.decode(req.cookies.token).userId,
+        }
         const data = await db.addSleepData(newSleepData)
         res.json(data)
     }
@@ -31,7 +35,10 @@ router.get('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const payload = req.body
+        const payload = {
+            ...req.body,
+            id: req.params.id,
+        }
         const data = await db.updateSleepData(payload)
         res.json(data)
     }
