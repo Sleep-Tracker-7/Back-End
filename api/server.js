@@ -8,7 +8,7 @@ const sleepRouter = require('../database/sleep-data/sleep-router')
 const server = express();
 
 server.use(helmet())
-server.use(cors())
+server.use(cors({ origin: "*", credentials: true }))
 server.use(express.json())
 server.use(cookieParser())
 
