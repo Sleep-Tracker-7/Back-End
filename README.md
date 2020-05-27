@@ -32,8 +32,22 @@
 ####    POST: /
 
         Allows user to add new sleep data.
+        _Fields:_
+            id (autoincrement),
+            user_id (foreign key),
+            start (timestamp, auto-generated upon sending),
+            end (timestamp),
+            hours (float),
+            score_wake (float),
+            score_day (float),
+            score_night (float),
+            mood_score (float),
+            total_hours (float)
 
 ####    PUT: /:id
 
         Allows user to edit existing sleep data.
 
+####    DEL: /:id
+
+        Allows user to delete sleep data entry.

@@ -41,11 +41,18 @@ async function updateSleepData(changes) {
         .update(changes)
 }
 
+async function deleteSleepData(id) {
+    return db('sleep_data')
+        .where(({ id }))
+        .del()
+}
+
 module.exports = {
     findBy,
     findById,
     add,
     addSleepData,
     getSleepData,
-    updateSleepData
+    updateSleepData,
+    deleteSleepData
 }

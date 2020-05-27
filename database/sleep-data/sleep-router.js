@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
 
 //get
 
-router.get('/', authenticate(), async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const data = await db.getSleepData()
         res.json(data)
@@ -47,4 +47,18 @@ router.put('/:id', async (req, res, next) => {
         next(err)
     }
 })
+
+//delete
+
+router.delete('/:id', async (req, res, next) => {
+    const { id } = req.params
+    try {
+        await db.deleteSleepData(id)
+        res.end()
+    }
+    catch (err){
+        next(err)
+    }
+})
+
 module.exports = router;
