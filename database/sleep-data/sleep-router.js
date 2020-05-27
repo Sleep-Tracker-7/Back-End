@@ -6,7 +6,7 @@ const authenticate = require('../../auth/auth-middleware')
 
 //post
 
-router.post('/', authenticate(), async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const newSleepData = {
             ...req.body,
@@ -22,7 +22,7 @@ router.post('/', authenticate(), async (req, res, next) => {
 
 //get
 
-router.get('/', authenticate(), async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const data = await db.getSleepData()
         res.json(data)
@@ -34,7 +34,7 @@ router.get('/', authenticate(), async (req, res, next) => {
 
 //put 
 
-router.put('/:id', authenticate(), async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
     try {
         const payload = {
             ...req.body,
@@ -50,7 +50,7 @@ router.put('/:id', authenticate(), async (req, res, next) => {
 
 //delete
 
-router.delete('/:id', authenticate(), async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     const { id } = req.params
     try {
         await db.deleteSleepData(id)
