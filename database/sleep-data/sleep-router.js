@@ -32,6 +32,17 @@ router.get('/', authenticate(), async (req, res, next) => {
     }
 })
 
+router.get('/:id', authenticate(), async (req, res, next) => {
+    const { id } = req.params
+    try {
+        const data = await db.findSleepDataById(id)
+        res.json(data)
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
 //put 
 
 router.put('/:id', authenticate(), async (req, res, next) => {

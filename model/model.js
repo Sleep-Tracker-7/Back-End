@@ -16,6 +16,13 @@ async function findById(id) {
 		.first()
 }
 
+async function findSleepDataById(id) {
+	return db('sleep_data')
+		.select('*')
+		.where({ id })
+		.first()
+}
+
 async function add(user) {
     user.password = await bcrypt.hash(user.password, 14)
 
@@ -50,6 +57,7 @@ async function deleteSleepData(id) {
 module.exports = {
     findBy,
     findById,
+    findSleepDataById,
     add,
     addSleepData,
     getSleepData,
