@@ -29,6 +29,10 @@
 
         Retrieves a list of sleep data.
 
+####    GETBYID: /:id 
+
+        Retrieves all sleep data for particular user.
+
 ####    POST: /
 
         Allows user to add new sleep data.
