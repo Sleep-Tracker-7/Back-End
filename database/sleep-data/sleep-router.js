@@ -24,7 +24,11 @@ router.post('/', authenticate(), async (req, res, next) => {
 
 router.get('/', authenticate(), async (req, res, next) => {
     try {
-        const data = await db.getSleepData()
+        const user_id = {
+            user_id: jwt.decode(req.cookies.token).userId
+        }
+        const data = await db.findSleepDataById(user_id)
+        console.log(data)
         res.json(data)
     }
     catch (err) {
@@ -35,7 +39,18 @@ router.get('/', authenticate(), async (req, res, next) => {
 router.get('/:id', authenticate(), async (req, res, next) => {
     const { id } = req.params
     try {
-        const data = await db.findSleepDataById(id)
+        const data = await db.findSleepDataById({ id: id })
+        res.json(data)
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
+router.get('/:id/mood_score', authenticate(), async (req, res, next) => {
+    const { id } = req.params
+    try {
+        const data = await db.addMood(id)
         res.json(data)
     }
     catch (err) {
@@ -71,5 +86,7 @@ router.delete('/:id', authenticate(), async (req, res, next) => {
         next(err)
     }
 })
+
+
 
 module.exports = router;

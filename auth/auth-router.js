@@ -41,7 +41,8 @@ router.post('/login', async (req, res, next) => {
         }
         res.cookie('token', jwt.sign(tokenPayload, process.env.JWT_SECRET))
         res.json({
-            message: `Welcome to SleepTracker, ${user.username}`
+            username: user.username,
+            id: user.id,
         })
     }
     catch (err) {
