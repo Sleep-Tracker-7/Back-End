@@ -25,15 +25,28 @@
 
 ### /sleep/
 
-####    GET: / 
+####    GET:
+        
+        / 
 
         Retrieves a list of sleep data.
 
-####    GETBYID: /:id 
+        /:id 
 
         Retrieves all sleep data for particular user.
 
-####    POST: /
+        /:id/mood_score
+
+        Retrieves an average score based on all sleep data entries.
+
+        /:id/hours
+
+        Retrieves total hours spent
+
+
+####    POST:
+
+        /
 
         Allows user to add new sleep data.
         _Fields:_
@@ -44,14 +57,16 @@
             hours (float),
             score_wake (float),
             score_day (float),
-            score_night (float),
-            mood_score (float),
-            total_hours (float)
+            score_night (float)
 
-####    PUT: /:id
+####    PUT:
+
+        /:id
 
         Allows user to edit existing sleep data.
 
-####    DEL: /:id
+####    DEL:
+
+        /:id
 
         Allows user to delete sleep data entry.
