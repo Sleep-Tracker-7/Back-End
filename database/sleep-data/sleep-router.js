@@ -58,6 +58,17 @@ router.get('/:id/mood_score', authenticate(), async (req, res, next) => {
     }
 })
 
+router.get('/:id/hours', authenticate(), async (req, res, next) => {
+    const { id } = req.params
+    try {
+        const data = await db.addHours(id)
+        res.json(data)
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
 //put 
 
 router.put('/:id', authenticate(), async (req, res, next) => {

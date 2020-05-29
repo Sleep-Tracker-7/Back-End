@@ -16,17 +16,9 @@ exports.up = async function(knex) {
       table.float('score_night')
       
   })
-  await knex.schema.createTable('totals', table => {
-      table.integer('id').notNullable().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
-      table.integer('user_id').notNullable().references('id').inTable('sleep_data').onDelete('CASCADE').onUpdate('CASCADE')
-      table.string('username').notNullable().references('username').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
-      table.float('mood_score')
-      table.float('total_hours')
-  })
 }
 
 exports.down = async function(knex) {
-  await knex.schema.dropTableIfExists('totals')
   await knex.schema.dropTableIfExists('sleep_data')
   await knex.schema.dropTableIfExists('users')
 }

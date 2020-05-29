@@ -65,6 +65,16 @@ async function addMood(id) {
         return average;
 }
 
+async function addHours(id) {
+    const data = await db('sleep_data')
+        .where('user_id', id)
+        .select('hours')
+        const result = data.reduce((total, { hours }) => {
+            return total + hours
+        }, 0)
+        return result;
+}
+
 async function getMoodScore(id) {
     return db('totals as t')
         .where('t.id', id)
@@ -81,5 +91,6 @@ module.exports = {
     updateSleepData,
     deleteSleepData,
     getMoodScore,
-    addMood
+    addMood,
+    addHours
 }
