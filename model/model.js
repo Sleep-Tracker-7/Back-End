@@ -17,10 +17,10 @@ async function findById(id) {
 }
 
 async function findSleepDataById(id) {
+    console.log(id)
 	return db('sleep_data')
 		.select('*')
-		.where({ id })
-		.first()
+		.where(id)
 }
 
 async function add(user) {
@@ -54,6 +54,33 @@ async function deleteSleepData(id) {
         .del()
 }
 
+async function addMood(id) {
+    const data = await db('sleep_data')
+        .where('user_id', id)
+        .select('score_wake', 'score_day', 'score_night')
+        const result = data.reduce((total, { score_wake, score_day, score_night }) => {
+            return total + score_wake + score_day + score_night
+        }, 0)
+        const average = (result / data.length * 3);
+        return average;
+}
+
+async function addHours(id) {
+    const data = await db('sleep_data')
+        .where('user_id', id)
+        .select('hours')
+        const result = data.reduce((total, { hours }) => {
+            return total + hours
+        }, 0)
+        return result;
+}
+
+async function getMoodScore(id) {
+    return db('totals as t')
+        .where('t.id', id)
+        .select('mood_score')
+}
+
 module.exports = {
     findBy,
     findById,
@@ -62,5 +89,8 @@ module.exports = {
     addSleepData,
     getSleepData,
     updateSleepData,
-    deleteSleepData
+    deleteSleepData,
+    getMoodScore,
+    addMood,
+    addHours
 }

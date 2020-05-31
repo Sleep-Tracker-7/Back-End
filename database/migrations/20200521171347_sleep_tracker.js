@@ -14,8 +14,7 @@ exports.up = async function(knex) {
       table.float('score_wake')
       table.float('score_day')
       table.float('score_night')
-      table.float('mood_score')
-      table.float('total_hours')
+      
   })
 }
 

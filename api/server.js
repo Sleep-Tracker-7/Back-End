@@ -15,6 +15,12 @@ server.use(cookieParser())
 server.use('/auth', authRouter)
 server.use('/sleep', sleepRouter)
 
+server.get('/', (req, res) => {
+    res.json({
+        message: "Welcome!"
+    })
+})
+
 server.use((err, req, res, next) => {
     console.log(err)
     res.status(500).json({
